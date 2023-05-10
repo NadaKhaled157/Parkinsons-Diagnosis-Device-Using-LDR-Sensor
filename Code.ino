@@ -19,7 +19,7 @@ void setup() {
  lcd.begin(16,2);
  lcd.setCursor(0,0);
  lcd.print("Initialization...");
- delay(3000);
+ delay(1000);
  pinMode(greenLed,OUTPUT);
  pinMode (redLed, OUTPUT);
  pinMode(sensorPin, INPUT);
@@ -29,6 +29,9 @@ void setup() {
 }
 
 void loop() {
+  Serial.println("Initialization...");
+  Serial.println("Start testing: ");
+  delay(5000);
   for(int i=0; i<=10;i++){
  int analogValue = analogRead(A0);
 float voltage = analogValue / 1024. * 5;
@@ -47,10 +50,10 @@ lcd.setCursor(0,1);
 lcd.print("Testing");
 
 Serial.println();
-Serial.print("Patient Status: " );
-Serial.println("Testing");
+// Serial.print("Patient Status: " );
+// Serial.println("Testing");
 
- if(lux>=70){
+ if(lux>=200){
     digitalWrite(greenLed,HIGH);
    digitalWrite(redLed, LOW);
     lcd.clear();
@@ -76,6 +79,8 @@ Serial.println("Testing");
     lcd.print("Passed");
 
     Serial.println();
+    // Serial.print(" 00:");
+    // Serial.print(i);
     Serial.print("Patient Status: ");
     Serial.println("Passed");
 
@@ -89,17 +94,19 @@ Serial.println("Testing");
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print("Patient Status: ");
-
-    delay (10000);
+    Serial.print("Patient Status: ");
+    delay (4000);
+    Serial.println("Failed");
     lcd.setCursor(0,1);
     lcd.print("Failed");
    
     Serial.println();
-    Serial.print("Patient Status: ");
-    Serial.println("Failed");
+    
+  
 
-    delay(10000);
+    delay(3000);
     break;
   }
 }
+delay(7000);
 }
